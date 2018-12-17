@@ -15,5 +15,8 @@ echo `date` start >> $backupdir/bakmysql.log
 #scp异地备份
 scp /home/backup/$date-phpquan.sql.gz user@phpquan.com:/mnt/disk/backup/mysql/$date-phpquan.sql.gz
 
+#删除5天前的日志
+find /home/backup/ -mtime +5 -name '*.sql.gz' -exec rm -rf {} \;
+
 #record log
 echo `date` finish >> $backupdir/bakmysql.log
